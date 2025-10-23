@@ -1,0 +1,146 @@
+/*
+ * HOJA DE ESTILOS PERSONALIZADA - HOODIE STYLE (Ximena)
+ */
+
+/* 1. Definimos la paleta HSL de Ximena y sobrescribimos Bootstrap */
+:root {
+    /* Paleta HSL de Ximena: #FF9966, #D99973, #B39980, #8C998C, #669999 */
+    
+    /* Colores principales */
+    --bs-primary: hsl(20, 100%, 70%);    /* #FF9966 (Naranja) */
+    --bs-secondary: hsl(20, 50%, 64%);     /* #D99973 (Terracota) */
+    --bs-warning: hsl(29, 24%, 60%);     /* #B39980 (Beige) */
+    --bs-info: hsl(180, 20%, 50%);      /* #669999 (Verde-Azul) */
+    --bs-success: hsl(120, 6%, 57%);       /* #8C998C (Verde-Gris) */
+    
+    /* Colores de fondo y texto */
+    --bs-body-bg: hsl(20, 30%, 98%); /* Un fondo muy claro, casi blanco pero con tinte cálido */
+    --bs-body-color: hsl(20, 15%, 25%);
+    --bs-secondary-color: hsl(20, 10%, 40%);
+
+    /* Color oscuro para footer/navbar (basado en su paleta) */
+    --bs-dark: hsl(180, 20%, 30%); /* Versión más oscura de --bs-info */
+    --bs-dark-rgb: 77, 115, 115;
+    
+    /* Fondos de componentes */
+    --bs-body-tertiary-bg: hsl(0, 0%, 100%); /* Navbar y cards blancas */
+    --bs-light: hsl(0, 0%, 98%);
+    --bs-light-rgb: 250, 250, 250;
+
+    /* Bordes */
+    --bs-border-radius: 0.5rem;
+    --bs-border-color: hsl(0, 0%, 85%);
+
+    /* Links */
+    --bs-link-color: var(--bs-primary);
+    --bs-link-hover-color: hsl(20, 100%, 60%); /* Naranja más oscuro */
+
+    /* Fuentes */
+    --bs-font-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 2. Estilos personalizados */
+/* ========================================= */
+
+/* Ajuste específico para el Header principal */
+header h1 {
+    color: var(--bs-primary);
+    /* Efecto de sombra 2D con la paleta de Ximena */
+    text-shadow: 3px 3px 0 var(--bs-secondary);
+}
+header .lead {
+    font-weight: 700;
+    color: var(--bs-secondary-color);
+}
+
+/* Ajuste para el banner promocional */
+#banner {
+    /* bg-dark se define en :root, pero reforzamos el borde */
+    border: 4px solid var(--bs-warning);
+}
+
+/* Ajuste para las pestañas del formulario */
+.nav-pills .nav-link {
+    color: var(--bs-primary);
+}
+.nav-pills .nav-link.active {
+    background-color: var(--bs-primary);
+    color: white;
+    /* Sombra estilo 8-bit con la paleta de Ximena */
+    box-shadow: 3px 3px 0 var(--bs-secondary);
+}
+
+/* Ajuste para los acordeones */
+.accordion-button:not(.collapsed) {
+    background-color: hsla(20, 100%, 70%, 0.1); /* Fondo naranja claro */
+    color: var(--bs-primary);
+    box-shadow: inset 0 -1px 0 var(--bs-border-color);
+}
+
+/* ========================================== */
+/* EFECTO HOVER (Como en tu proyecto, pero con su paleta) */
+/* ========================================== */
+.card {
+    /* Transición suave para el hover */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    border-color: var(--bs-primary); /* HSL: hsl(20, 100%, 70%) */
+    box-shadow: 0 0.5rem 1rem hsla(20, 50%, 64%, 0.3); /* Sombra con --bs-secondary */
+}
+
+
+/* ========================================== */
+/* ESTILOS WHATSAPP (Como en tu proyecto) */
+/* ========================================== */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;     /* Distancia desde abajo */
+  right: 20px;      /* Distancia desde la derecha */
+  background-color: #25d366; /* Verde WhatsApp */
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;  /* Tamaño del ícono */
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.25);
+  z-index: 1055;    /* Más alto que navbar/carrusel */
+  text-decoration: none;
+  transition: transform .2s ease, background-color .2s ease, opacity .2s ease;
+
+  /* Por defecto lo ocultamos; se muestra al hacer scroll con JS */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+
+/* Estado visible al hacer scroll (controlado por JS) */
+.whatsapp-float.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Hover/focus: efecto de ampliación */
+.whatsapp-float:hover,
+.whatsapp-float:focus {
+  background-color: #20b954;
+  transform: scale(1.08);
+  outline: none;
+}
+
+/* Evitamos que el botón tape el footer en pantallas pequeñas */
+@media (max-width: 575.98px) {
+  footer { padding-bottom: 84px; } /* 60px botón + 24px aire */
+}
+
+/* Accesibilidad: menos movimiento si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float { transition: none; }
+}
